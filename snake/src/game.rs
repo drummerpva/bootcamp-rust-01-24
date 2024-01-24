@@ -137,4 +137,22 @@ impl Game {
         self.food_y = new_y;
         self.food_exists = true;
     }
+    pub fn update_snake(&mut self, direction: Option<Direction>) {
+        if !self.check_if_snake_alive(direction) {
+            self.game_over = true;
+            return;
+        }
+        self.snake.move_forward(direction);
+        self.check_eating();
+        self.waiting_time = 0.0;
+    }
+
+    pub fn restart(&mut self) {
+        self.snake = Snake::new(2, 2);
+        self.waiting_time = 0.0;
+        self.food_exists = true;
+        self.food_x = 4;
+        self.food_y = 6;
+        self.game_over = false;
+    }
 }

@@ -5,6 +5,9 @@ const BLOCK_SIZE: f64 = 25.0;
 pub fn to_coord(game_coord: i32) -> f64 {
     return (game_coord as f64) * BLOCK_SIZE;
 }
+pub fn to_coord_u32(game_coord: i32) -> u32 {
+    return to_coord(game_coord) as u32;
+}
 
 pub fn draw_block(color: Color, x: i32, y: i32, context: &Context, graphic_buffer: &mut G2d) {
     let graphic_coord_x = to_coord(x);
@@ -14,7 +17,7 @@ pub fn draw_block(color: Color, x: i32, y: i32, context: &Context, graphic_buffe
         [graphic_coord_x, graphic_coord_y, BLOCK_SIZE, BLOCK_SIZE],
         context.transform,
         graphic_buffer,
-    )
+    );
 }
 
 pub fn draw_rectangle(
@@ -38,5 +41,5 @@ pub fn draw_rectangle(
         ],
         context.transform,
         graphic_buffer,
-    )
+    );
 }
